@@ -1,5 +1,9 @@
 # Jquery::Xmleditor::Rails
 
+[jquery.xmleditor](https://github.com/UNC-Libraries/jquery.xmleditor) is web browser based XML editor developed as a part of the [Carolina Digital Repository](https://cdr.lib.unc.edu/). It provides a general use graphical tool for creating new or modifying existing XML documents in your web browser.  Information is extracted from an XML schema (XSD file) to provide the user with information about what elements, subelements and attributes are available at different points in the structure, and a GUI based means of adding or removing them from the document.
+
+jquery-xmleditor-rails is a library that integrates jQuery XMLEditor for the Rails Asset Pipeline.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -16,15 +20,17 @@ Or install it yourself as:
 
     $ gem install jquery-xmleditor-rails
 
+Require jquery-xmleditor in your app/assets/application.js file.
+
+    //= require jquery-xmleditor
+
+Require the stylesheet file to app/assets/stylesheets/application.css
+
+    *= require jquery.xmleditor
+
 ## Usage
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Refer to the instructions provided on the plugins homepage for usage.
 
 ## Contributing
 
