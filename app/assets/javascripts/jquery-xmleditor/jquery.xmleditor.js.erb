@@ -138,6 +138,7 @@ $.widget( "xml.xmlEditor", {
 		var self = this;
 		var schema = this.options.schema;
 		var libPath = this.options.libPath;
+                var cyclePath = "<%= asset_path('jquery-xmleditor/vendor/cycle.js') %>"
 
 		this.instanceNumber = $("xml-xmlEditor").length;
 		
@@ -215,6 +216,8 @@ $.widget( "xml.xmlEditor", {
 				}
 			}
 		}
+
+                this.cyclePath = "<%= Rails.application.routes.url_helpers.root_url %>" + cyclePath;
 
 		// Load the schema
 		this.loadSchema(this.options.schema);
@@ -338,7 +341,7 @@ $.widget( "xml.xmlEditor", {
 					&& typeof(window.URL) !== "undefined" && typeof(Worker) !== "undefined" && typeof(Blob) !== "undefined") {
 				var blob = new Blob([
 						"self.onmessage = function(e) {" +
-						"importScripts(e.data.libPath + 'cycle.js');" +
+						"importScripts(e.data.cyclePath);" +
 						"var schema;" +
 						"if (typeof e.data.schema == 'string' || typeof e.data.schema instanceof String) {" +
 						"	var xmlhttp = new XMLHttpRequest();" +
@@ -366,7 +369,7 @@ $.widget( "xml.xmlEditor", {
 					self.schema = JSON.retrocycle(schema);
 					self._schemaReady();
 				};
-				worker.postMessage({'schema' : schema, 'libPath' : this.libPath});
+				worker.postMessage({'schema' : schema, 'cyclePath' : this.cyclePath});
 			} else {
 				// Fallback with synchronous retrocycling
 				if (typeof schema == 'string' || typeof schema instanceof String) {
