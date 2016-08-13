@@ -34,7 +34,7 @@ Refer to the instructions provided on the plugins homepage for usage.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jquery-xmleditor-rails.
+Bug reports and pull requests are welcome on GitHub at https://github.com/stkenny/jquery-xmleditor-rails.
 
 
 ## License
