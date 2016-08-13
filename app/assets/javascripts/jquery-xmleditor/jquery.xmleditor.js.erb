@@ -171,8 +171,11 @@ $.widget( "xml.xmlEditor", {
 		// Flag indicating if the editor was initialized on a text area that will need to be updated
 		this.isTextAreaEditor = false;
 
-		var url = document.location.href;
-		var index = url.lastIndexOf("/");
+                var protocol = document.location.protocol
+                var host = document.location.host
+		var url = document.location.protocol + "//" + document.location.host + "/"
+		
+                var index = url.lastIndexOf("/");
 		if (index != -1)
 			this.baseUrl = url.substring(0, index + 1);
 		
@@ -217,7 +220,7 @@ $.widget( "xml.xmlEditor", {
 			}
 		}
 
-                this.cyclePath = "<%= Rails.application.routes.url_helpers.root_url %>" + cyclePath;
+                this.cyclePath = this.baseUrl + cyclePath;
 
 		// Load the schema
 		this.loadSchema(this.options.schema);
