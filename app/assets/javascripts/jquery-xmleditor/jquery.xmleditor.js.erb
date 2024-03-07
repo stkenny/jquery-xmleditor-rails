@@ -2792,7 +2792,7 @@ MenuBar.prototype.activateMenu = function(event) {
 	}
 	var self = this;
 	$.each(this.updateFunctions, function() {
-		this(self.editor);
+		this.call(self, self.editor);
 	});
 	this.menuBarContainer.addClass("active");
 	$('html').one("click" ,function() {
