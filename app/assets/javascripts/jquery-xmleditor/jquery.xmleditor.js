@@ -131,14 +131,16 @@ $.widget( "xml.xmlEditor", {
 		prependNewElements: false,
 		autocomplete: true,
 		
-		targetNS: null
+		targetNS: null,
+
+		cyclePath: null,
 	},
 	
 	_create: function() {
 		var self = this;
 		var schema = this.options.schema;
 		var libPath = this.options.libPath;
-                var cyclePath = "<%= asset_path('jquery-xmleditor/vendor/cycle.js') %>"
+                var cyclePath = this.options.cyclePath || "/assets/jquery-xmleditor/vendor/cycle.js";
 
 		this.instanceNumber = $("xml-xmlEditor").length;
 		
@@ -220,7 +222,9 @@ $.widget( "xml.xmlEditor", {
 			}
 		}
 
-                this.cyclePath = this.baseUrl + cyclePath;
+                this.cyclePath = /^(https?:)?\/\//.test(cyclePath) || cyclePath.charAt(0) === '/'
+    				? new URL(cyclePath, window.location.origin).href
+    				: this.baseUrl + cyclePath;
 
 		// Load the schema
 		this.loadSchema(this.options.schema);
